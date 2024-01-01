@@ -1,0 +1,39 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'system/system.css' %}">
+</head>
+
+<a href="{% url 'addemploye' %}" style="position:absolute;left:48.5%;top: 7%;" class="btn btn-outline-primary"><i class="fa-solid fa-plus"></i></a>
+<body>
+  <link rel="stylesheet" href="{% static 'users/main.css' %}">
+  <div class="cart" style="position: absolute;left: 3%;">
+    {% for employe in employes %}
+    <div class="card"  style="width: 23rem;">
+      <img src="{{employe.image.url}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title" style="font-size:30px;font-family:Arial, Helvetica, sans-serif">{{employe.first_name}}  {{employe.last_name}}</h5>
+        <p class="card-text">𝙴𝚖𝚊𝚒𝚕: <a style="font-size: large;">{{employe.email}}</a></p>
+        <p class="card-text">𝙿𝚑𝚘𝚗𝚎: <a style="font-size: large;">{{employe.phone}}</a></p></p>
+        <p class="card-text">𝙲𝚒𝚗: <a style="font-size: large;">{{employe.cin}}</a></p></p>
+        <p class="card-text">𝙿𝚛𝚘𝚏𝚎𝚜𝚜𝚒𝚘𝚗: <a style="font-size: large;">{{employe.profession}}</a></p></p>
+        <form method="POST" class="needs-validation" enctype='multipart/form-data'>
+          {% csrf_token %}
+          <a href="{% url 'edit' employe.cin %}" class="btn btn-outline-info"><i class="fa-solid fa-pen"></i></a>
+        <a  href="{% url 'delete' employe.cin %}" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a>
+        </form> 
+      </div>
+    </div>
+      {% endfor %} 
+   
+  </div>
+ 
+</body>
+</html>
+{% endblock content %}

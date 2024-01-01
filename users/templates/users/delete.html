@@ -1,0 +1,25 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body >
+        <div class="card card-body" style="position: absolute;height:27%;width: 50%;left: 20%;">
+<p style="color: black;font-size: 40px;">Are you sure you wanna delete Employe {{Employe.first_name}} with cin : {{Employe.cin}}</p>
+<form method="POST" >
+    {% csrf_token %}
+    <a href="{% url 'allemploye' %}" class="btn btn-info"><i class="fa-solid fa-left-long fa-beat"></i></a>
+    <button type="submit" class="btn btn-danger" style="color: black;"><i class="fa-solid fa-check"></i></button>
+</form>
+</div>
+</div>
+</div>
+</body>
+</html>
+
+{% endblock content %}

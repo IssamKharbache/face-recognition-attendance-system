@@ -1,0 +1,92 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='{% static "users/main.css" %}' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'users/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'users/fontawesome.min.css' %}">
+</head>
+<style>
+    
+</style>
+<body class="home">
+   
+    <div class="digital-clock">
+        <div class="time">
+            <span class="hours">00</span>
+            <span class="dots">:</span>
+            <span class="minutes">00</span>
+            <div class="right-side">
+                <span class="period">PM</span>
+                <span class="seconds">00</span>
+                </div>
+            </div>
+             
+        <div class="calendar">
+            <span class="month-name">Month</span>
+            <span class="day-name">Day</span>
+            <span class="day-number">00</span>
+            <span class="year">0000</span>
+
+
+        </div>     
+    </div>
+   <p class="title">Face recognition </p> 
+   <p class="title2">system web app</p> 
+   <a href="{% url 'allemploye' %}" class="btn btn-outline-primary all-employe">All Employes</a>
+   <a href="{% url 'about' %}" class="btn btn-outline-info about-button">Know more about the application</a>  
+    <script>
+     function clock(){
+        var today = new Date();
+        var hours = today.getHours();
+        var min = today.getMinutes();
+        var sec = today.getSeconds();
+        let period = "AM"
+        if(hours>=12){
+            period = "PM"
+        }
+        else{
+            period = "AM"
+        }
+
+        hours = hours>12 ? hours % 12 :hours;     
+        //set 0 before number
+        if(hours<10){
+            hours = "0"+hours
+        }
+        if(min<10){
+            min = "0"+min
+        }
+        if(sec<10){
+            sec = "0"+sec
+        }
+        document.querySelector(".hours").innerHTML = hours;
+        document.querySelector(".minutes").innerHTML = min;
+        document.querySelector(".seconds").innerHTML = sec;
+        document.querySelector(".period").innerHTML = period; 
+
+     
+     } 
+
+     var updateclock = setInterval(clock,1000);
+     //date
+     var today = new Date();
+     const dayNumber = today.getDate();
+     const year = today.getFullYear();
+     const dayName = today.toLocaleString("default",{weekday:"long"});
+     const monthName = today.toLocaleString("default",{month:"short"});
+
+        document.querySelector(".month-name").innerHTML = monthName;
+        document.querySelector(".day-name").innerHTML = dayName;
+        document.querySelector(".day-number").innerHTML = dayNumber;
+        document.querySelector(".year").innerHTML = year; 
+
+    </script>
+</body>
+</html>
+{% endblock content %}

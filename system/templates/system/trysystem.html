@@ -1,0 +1,30 @@
+{% extends 'users/base.html' %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'users/main.css' %}">
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit" style="position: absolute;left:45%;top:7%;" class="btn btn-success">LAUNCH SYSTEM</button>
+</form>
+
+{% for employe in employeinfo %}
+
+<div class="card"  style="width: 23rem;">
+
+  <img src="{{employe.image.url}}" class="card-img-top" alt="...">
+
+  <div class="card-body">
+    <h5 class="card-title" style="font-size:30px;font-family:Arial, Helvetica, sans-serif">{{employe.first_name}}  {{employe.last_name}}</h5>
+    <p class="card-text">𝙴𝚖𝚊𝚒𝚕: <a style="font-size: large;">{{employe.email}}</a></p>
+    <p class="card-text">𝙿𝚑𝚘𝚗𝚎: <a style="font-size: large;">{{employe.phone}}</a></p></p>
+    <p class="card-text">𝙲𝚒𝚗: <a style="font-size: large;">{{employe.cin}}</a></p></p>
+    <p class="card-text">𝙿𝚛𝚘𝚏𝚎𝚜𝚜𝚒𝚘𝚗: <a style="font-size: large;">{{employe.profession}}</a></p></p>
+    <a href="{% url 'edittry' employe.cin %}" class="btn btn-outline-info"><i class="fa-solid fa-pen"></i></a>
+    <a href="{% url 'deletetry' employe.cin %}" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></a>
+  </div>
+</div>
+{% endfor %}
+ 
+</div>
+{% endblock content %}

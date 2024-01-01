@@ -1,0 +1,156 @@
+{% load static %}
+<!doctype html>
+<html lang="en" >
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href='{% static "users/main.css" %}' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'users/bootstrap.css' %}">
+    <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'fontawesomefree/js/fontawesome.js' %}"></script>
+    <script src="{% static 'fontawesomefree/js/solid.js' %}"></script>
+    <script src="{% static 'fontawesomefree/js/brands.js' %}"></script>
+    <script src="{% static 'fontawesomefree/js/all.min.js' %}"></script>
+
+
+    <title>Detection app</title>
+    <style>
+      .dropdown:hover .dropdown-menu {
+          display: block;
+          background: #0B1333;
+          border-radius: 10px;
+      }
+  </style>
+  </head>
+  <body style="background: url(/static/images/background.png);">
+    <div class="container-fluid">
+      {% if user.is_staff %}
+        <nav class="navbar navbar-expand-lg bg-* me-2">
+          <a class="navbar-brand name" href="{% url 'home' %}"><img src="{%static 'users/pfelogo.png'%}"  alt="logo" style="position: relative;width: 60px;"></a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active link" aria-current="page" href="{% url 'home' %}">Home</a> 
+        </li>
+        <div class="dropdown">
+          <a class="nav-link active link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            employee management
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li class="nav-item">
+              <a class="nav-link active link"  aria-current="page" href="{% url 'addemploye' %}">add employee</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active link"  aria-current="page" href="{% url 'adduser' %}">add admin</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active link"  aria-current="page" href="{% url 'allemploye' %}">All employe</a>
+            </li>
+         </ul>
+         </div>
+
+     
+       
+        <div class="dropdown">
+          <a class="nav-link active link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+            System
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li class="nav-item">
+              <a class="nav-link active link"  aria-current="page" href="{% url 'trysystem' %}">Try system</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active link"  aria-current="page" href="{% url 'statis' %}">Statistic</a>
+            </li>
+            
+          </ul>
+        </div>
+        <li class="nav-item">
+          <a class="nav-link active link"  aria-current="page" href="{% url 'about' %}">About</a>
+        </li>
+        
+      </ul>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+ 
+        
+          <li class="nav-item">
+            <a class="nav-link active link"  style="position: absolute;right: 9%;top: 15%;" href="{% url 'profile' %}"><i class="fa-regular fa-user fa-xs"></i> {{user.username}}</a>
+          </li>
+        <li class="nav-item">     
+          <a class="nav-link active link" style="position:absolute;right:1%;top: 15%;" href="{% url 'logout' %}">Logout <i class="fa-solid fa-arrow-right-from-bracket fa-flip" style="color: #bcc4d2;"></i></a>
+  
+        </li>
+      {% else %}
+      <nav class="navbar navbar-expand-lg bg-* me-2">
+        <a class="navbar-brand name" href="{% url 'home' %}"><img src="{%static 'users/pfelogo.png'%}"  alt="logo" style="position: relative;width: 60px;"></a>
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active link" aria-current="page" href="{% url 'home' %}">Home</a> 
+      </li>
+      <div class="dropdown">
+        <a class="nav-link active link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          employee management
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li class="nav-item">
+            <a class="nav-link active link"  aria-current="page" href="{% url 'addemploye' %}">add employee</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active link"  aria-current="page" href="{% url 'allemploye' %}">All employe</a>
+          </li>
+       </ul>
+       </div>
+
+   
+     
+      <div class="dropdown">
+        <a class="nav-link active link" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+          System
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <li class="nav-item">
+            <a class="nav-link active link"  aria-current="page" href="{% url 'trysystem' %}">Try system</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active link"  aria-current="page" href="{% url 'statis' %}">Statistic</a>
+          </li>
+
+        </ul>
+      </div>
+     
+      <li class="nav-item">
+        <a class="nav-link active link"  aria-current="page" href="{% url 'about' %}">About</a>
+      </li>
+    </ul> 
+  
+    </ul>
+    
+    
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+      <a class="nav-link active link" style="position: absolute;right: 9%;top: 15%;" href="{% url 'profile' %}"><i class="fa-regular fa-user fa-xs"></i> {{user.username}}</a>
+  
+      </li>
+    <li class="nav-item">
+      <a class="nav-link active link" style="position:absolute;right:1%;top: 15%;" href="{% url 'logout' %}">Logout <i class="fa-solid fa-arrow-right-from-bracket fa-flip" style="color: #bcc4d2;"></i></a>
+          
+    </li>
+      {% endif %}
+      
+ 
+    </nav>
+    </div>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{message.tags}}">
+      {{message}}
+    </div>
+    {% endfor %}
+    {%endif%}
+    {% block content %}{% endblock content %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>

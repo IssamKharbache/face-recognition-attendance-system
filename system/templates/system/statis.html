@@ -1,0 +1,166 @@
+{% extends 'users/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+  <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+      }
+      .chartMenu {
+        width: 100vw;
+        height: 40px;
+        background: #1A1A1A;
+        color: rgba(54, 162, 235, 1);
+      }
+      .chartMenu p {
+        padding: 10px;
+        font-size: 20px;
+      }
+      .chartCard {
+        width: 100vw;
+        height: calc(100vh - 40px);
+        background: rgba(54, 162, 235, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .chartBox {
+        width: 700px;
+        padding: 20px;
+        border-radius: 20px;
+        border: solid 3px rgba(54, 162, 235, 1);
+        background: white;
+      }
+    </style>
+
+<h3 style="position: absolute;left: 38%;color: white;">Employee's Statistic</h3>
+<div class="chartMenu">
+
+</div>
+<div class="chartCard">
+  <div class="chartBox">
+    <canvas id="myChart"></canvas>
+  </div>
+</div>
+    <select id="typechart" style="position: absolute;top: 20%;left: 73%;" onchange="changeChart(this)" class="form-control w-25" style="position: absolute;right: 10%;" aria-label="default select example">
+      <option selected >Open this select chart type</option>
+      <option value="pie">Pie</option>
+      <option value="bar">Bar</option>
+      <option value="line">Line</option>
+      <option value="polarArea">polarArea</option>
+    </select>
+  
+  </form>
+
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  
+  <script>
+    var typechart = document.getElementById('typechart')
+  const data2 = {
+      labels: [{% for employes in employe %}'{{employes.first_name}}',{% endfor%}],
+      datasets: [{
+        label: 'Time worked',
+        data: [{% for employes in employe %}{{employes.timeworked}},{% endfor%}],
+        backgroundColor: [
+        'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+        ],
+        borderColor: [
+        'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+        ],
+        borderWidth: 1
+      }]
+    };
+
+    const config = {
+      type: 'bar',
+      data: data2,
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    };
+    const config2 = {
+      type: 'pie',
+      data: data2,
+      options: {
+     
+      }
+    };
+    const config3 = {
+      type: 'line',
+      data: data2,
+      options: {
+        scales: {
+          
+        }
+      }
+    };
+    const config4 = {
+      type: 'polarArea',
+      data: data2,
+      options: {
+        scales: {
+          
+        }
+      }
+    };
+
+    // render init block
+    let myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+    function changeChart(typechart){
+        console.log(typechart.value);
+        myChart.destroy();
+      if(typechart.value==='bar'){
+        myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+      }
+      if(typechart.value==='pie'){
+        myChart = new Chart(
+      document.getElementById('myChart'),
+      config2
+    );
+      }
+      if(typechart.value==='line'){
+        myChart = new Chart(
+      document.getElementById('myChart'),
+      config3
+    );
+      }
+      if(typechart.value==='polarArea'){
+        myChart = new Chart(
+      document.getElementById('myChart'),
+      config4
+    );
+      }  
+    }
+  
+  </script>  
+   <h4 style="position: absolute;color: white;right:100%;top: 0%;font-size: 15px;">Hours worked/day</h4>
+</div>
+</div>
+
+{% endblock content%}
